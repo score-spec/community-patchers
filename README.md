@@ -13,7 +13,7 @@ _Note: Do you have other examples that you would like to see in this list? Pleas
 Example of usage:
 ```bash
 score-compose init \
-    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/service-account.tpl
+    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/unprivileged.tpl
 ```
 
 ## For `score-k8s`
