@@ -22,7 +22,7 @@ score-compose init \
 - `statefulset.tpl`
 - `unprivileged.tpl`
 
-_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PE, thanks!_
+_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! We'll find someone in the community willing to help you on this. Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PR, thanks!_
 
 Example of usage:
 ```bash
