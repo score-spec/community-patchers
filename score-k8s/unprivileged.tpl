@@ -8,13 +8,13 @@
   value: 65532
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.runAsGroup
-  value: "65532"
+  value: 65532
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.runAsNonRoot
   value: true
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.runAsUser
-  value: "65532"
+  value: 65532
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.seccompProfile.type
   value: "RuntimeDefault"
