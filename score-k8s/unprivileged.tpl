@@ -5,7 +5,7 @@
   value: false
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.fsGroup
-  value: "65532"
+  value: 65532
 - op: set
   path: {{ $i }}.spec.template.spec.securityContext.runAsGroup
   value: "65532"
