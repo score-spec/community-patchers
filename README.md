@@ -8,6 +8,8 @@ This repository is a library of patch templates examples that you can use with e
 
 - `unprivileged.tpl`
 
+_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PE, thanks!_
+
 Example of usage:
 ```bash
 score-compose init \
@@ -21,6 +23,8 @@ score-compose init \
 - `statefulset.tpl`
 - `unprivileged.tpl`
 
+_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PE, thanks!_
+
 Example of usage:
 ```bash
 score-k8s init \
@@ -32,3 +36,5 @@ score-k8s init \
 ## Examples by the community using this library
 
 - [Nginx Score demo](https://github.com/mathieu-benoit/nginx-score-demo)
+
+_Note: Do you have a repo, a blog post or a talk using this library? Please add your link in this list above by opening a PR in this repository, thanks!_
