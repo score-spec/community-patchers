@@ -13,8 +13,7 @@ _Note: Do you have other examples that you would like to see in this list? Pleas
 Example of usage:
 ```bash
 score-compose init \
-    --no-sample \
-    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/service-account.tpl \
+    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/service-account.tpl
 ```
 
 ## For `score-k8s`
@@ -28,7 +27,6 @@ _Note: Do you have other examples that you would like to see in this list? Pleas
 Example of usage:
 ```bash
 score-k8s init \
-    --no-sample \
     --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-k8s/unprivileged.tpl \
     --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-k8s/service-account.tpl
 ```
