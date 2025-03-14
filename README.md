@@ -39,4 +39,4 @@ score-k8s init \
 - [.NET Score demo](https://github.com/mathieu-benoit/sail-sharp)
 - [Dapr Score demo](https://github.com/mathieu-benoit/dapr-score-humanitec)
 
-_Note: Do you have a repo, a blog post or a talk using this library? Please add your link in this list above by opening a PR in this repository, thanks!_
+_Note: Do you have a repository, a blog post or a talk using this library? Please add your link in this list above by opening a PR in this repository, thanks!_
