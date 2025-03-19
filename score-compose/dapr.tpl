@@ -3,12 +3,39 @@
   value: daprio/dapr
 - op: set
   path: services.placement.command
-  value: ["./placement", "-port", "50006"]
+  value: ["./placement", "--port", "50006"]
 - op: set
   path: services.placement.ports
   value:
   - target: 50006
     published: "50006"
+- op: set
+  path: services.scheduler.image
+  value: daprio/dapr
+- op: set
+  path: services.scheduler.command
+  value: ["./scheduler", "--port", "50007"]
+- op: set
+  path: services.scheduler.ports
+  value:
+  - target: 50007
+    published: "50007"
+- op: set
+  path: services.scheduler.volumes
+  value:
+  - type: volume
+    source: scheduler-data
+    target: /data
+  #- type: tmpfs
+  #  target: /data
+  #  tmpfs:
+  #    size: 128
+- op: set
+  path: volumes.scheduler-data.name
+  value: scheduler-data
+- op: set
+  path: volumes.scheduler-data.driver
+  value: local
 {{ range $name, $cfg := .Compose.services }}
 {{ if dig "annotations" "dapr.io/enabled" false $cfg }}
 - op: set
