@@ -4,18 +4,20 @@ Since `score-compose` version [`0.27.0`](https://github.com/score-spec/score-com
 
 This repository is a library of patch templates examples that you can use with either `score-compose` or `score-k8s`.
 
+_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! We'll find someone in the community willing to help you on this. Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PR, thanks!_
+
 ## For `score-compose`
 
 - `dapr.tpl`
+- `microcks.tpl`
 - `unprivileged.tpl`
-
-_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! We'll find someone in the community willing to help you on this. Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PR, thanks!_
 
 Example of usage:
 ```bash
 score-compose init \
-    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/unprivileged.tpl \
-    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/dapr.tpl
+    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/dapr.tpl \
+    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/microcks.tpl \
+    --patch-templates https://raw.githubusercontent.com/score-spec/community-patchers/refs/heads/main/score-compose/unprivileged.tpl
 ```
 
 ## For `score-k8s`
@@ -23,8 +25,6 @@ score-compose init \
 - `service-account.tpl`
 - `statefulset.tpl`
 - `unprivileged.tpl`
-
-_Note: Do you have other examples that you would like to see in this list? Please file an issue in this repository, thanks! We'll find someone in the community willing to help you on this. Or do you have your own patch templates that you would like to share with the community? Please add them in the repository by opening a PR, thanks!_
 
 Example of usage:
 ```bash
