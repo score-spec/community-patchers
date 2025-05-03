@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: setup-kind-cluster
-        run: |
-          .scripts/setup-kind-cluster.sh
       - uses: score-spec/setup-score@v2
         with:
           file: score-compose
