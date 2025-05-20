@@ -20,6 +20,7 @@ score-compose init \
 
 ## For `score-k8s`
 
+- `delete-default-manfiests.tpl`
 - `service-account.tpl`
 - `statefulset.tpl`
 - `unprivileged.tpl`
