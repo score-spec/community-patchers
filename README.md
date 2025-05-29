@@ -22,6 +22,7 @@ score-compose init \
 
 - `delete-default-manifests.tpl`
 - `service-account.tpl`
+- `service-account-admin.tpl`
 - `statefulset.tpl`
 - `unprivileged.tpl`
 
