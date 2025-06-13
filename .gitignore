@@ -1,3 +1,5 @@
-*/compose.yaml
-*/manifests.yaml
-*/score.yaml
+**/compose.yaml
+**/manifests.yaml
+**/score.yaml
+.score-k8s/
+.score-compose/
