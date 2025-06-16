@@ -21,6 +21,9 @@ score-compose init \
 ## For `score-k8s`
 
 - `delete-default-manifests.tpl`
+- `namespace-pss-restricted.tpl`
+- `namespace-with-allow-ingress-within-namespace-netpol.tpl`
+- `namespace-with-deny-all-netpol.tpl`
 - `service-account.tpl`
 - `service-account-admin.tpl`
 - `statefulset.tpl`
@@ -35,6 +38,7 @@ score-k8s init \
 
 ## Examples by the community using this library
 
+- [Deploy Backstage with Score](https://medium.com/@mabenoit/deploy-backstage-with-score-45bb2d7c2d90)
 - [Nginx Score demo](https://github.com/mathieu-benoit/nginx-score-demo)
 - [.NET Score demo](https://github.com/mathieu-benoit/sail-sharp)
 - [Dapr Score demo](https://github.com/mathieu-benoit/dapr-score-humanitec)
