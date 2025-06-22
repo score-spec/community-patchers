@@ -41,10 +41,16 @@
       description: {{ $name }}
       annotations:
         github.com/project-slug: $GITHUB_REPO
+        {{/* add more annotations on this Workload based on your own needs */}}
       links:
         - url: https://github.com/$GITHUB_REPO
           title: Repository
           icon: github
+        {{ range $cname, $cspec := $spec.containers }}
+        - url: {{ $cspec.image }}
+          title: 'Container image: {{ $cname }}'
+          icon: docs
+        {{ end }}
       {{ $tags := dig "metadata" "annotations" "tags" "" $spec }}
       {{ if ne $tags "" }}
       tags:
