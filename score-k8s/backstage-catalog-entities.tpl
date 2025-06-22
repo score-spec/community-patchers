@@ -2,6 +2,7 @@
 {{ $user := "guest" }}
 
 {{ $namespace := .Namespace }}
+{{ $componentAndResourcePrefix := ne $namespace "" | ternary (print $namespace "-") "" }}
 
 {{/* remove the default generated manifests */}}
 {{ range $i, $m := (reverse .Manifests) }}
@@ -40,7 +41,8 @@
     apiVersion: backstage.io/v1alpha1
     kind: Component
     metadata:
-      name: {{ $name }}
+      name: {{ $componentAndResourcePrefix }}{{ $name }}
+      title: {{ $name }}
       description: {{ $name }}
       annotations:
         github.com/project-slug: $GITHUB_REPO
@@ -49,11 +51,6 @@
         - url: https://github.com/$GITHUB_REPO
           title: Repository
           icon: github
-        {{ range $cname, $cspec := $spec.containers }}
-        - url: {{ $cspec.image }}
-          title: 'Container image: {{ $cname }}'
-          icon: docs
-        {{ end }}
       {{ $tags := dig "metadata" "annotations" "tags" "" $spec }}
       {{ if ne $tags "" }}
       tags:
@@ -69,28 +66,29 @@
       system: {{ $namespace }}
       {{ end }}
       dependsOn:
-      {{ range $cname, $cspec := $spec.resources }}
-      {{ if eq $cspec.type "service" }}
-      - 'component:{{ $cname }}'
+      {{ range $rname, $rspec := $spec.resources }}
+      {{ if eq $rspec.type "service" }}
+      - 'resource:{{ $componentAndResourcePrefix }}{{ $rname }}'
       {{ else }}
-      {{ if ne $cspec.type "route" }}
-      - 'resource:{{ $cname }}'
+      {{ if ne $rspec.type "route" }}
+      - 'resource:{{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}'
       {{ end }}
       {{ end }}
       {{ end }}
 {{/* generate a Resource per Workload's resource */}}
-{{ range $cname, $cspec := $spec.resources }}
-{{ if ne $cspec.type "route" }}
+{{ range $rname, $rspec := $spec.resources }}
+{{ if ne $rspec.type "route" }}
 - op: set
   path: -1
   value:
     apiVersion: backstage.io/v1alpha1
     kind: Resource
     metadata:
-      name: {{ $name }}-{{ $cname }}
-      description: '{{ $cname }} (type: {{ $cspec.type }}) of {{ $name }}'
+      name: {{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}
+      title: {{ $rname }}
+      description: '{{ $rname }} (type: {{ $rspec.type }}) of {{ $name }}'
     spec:
-      type: {{ $cspec.type }}
+      type: {{ $rspec.type }}
       owner: user:{{ $user }}
       {{ if ne $namespace "" }}
       system: {{ $namespace }}
