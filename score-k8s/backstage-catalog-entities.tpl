@@ -68,7 +68,7 @@
       dependsOn:
       {{ range $rname, $rspec := $spec.resources }}
       {{ if eq $rspec.type "service" }}
-      - 'resource:{{ $componentAndResourcePrefix }}{{ $rname }}'
+      - 'component:{{ $componentAndResourcePrefix }}{{ $rname }}'
       {{ else }}
       {{ if ne $rspec.type "route" }}
       - 'resource:{{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}'
