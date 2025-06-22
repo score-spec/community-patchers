@@ -3,15 +3,16 @@
 
 {{ $namespace := .Namespace }}
 
-{{/* remove the default manifests */}}
+{{/* remove the default generated manifests */}}
 {{ range $i, $m := (reverse .Manifests) }}
 {{ $i := sub (len $.Manifests) (add $i 1) }}
 - op: delete
   path: {{ $i }}
 {{ end }}
 
-{{/* generate System if --namespace is supplied */}}
-{{ if ne $namespace "" }}
+{{/* generate System if --generate-namespace is supplied */}}
+{{ range $i, $m := .Manifests }}
+{{ if eq $m.kind "Namespace" }}
 - op: set
   path: -1
   value:
@@ -29,6 +30,8 @@
     spec:
       owner: user:{{ $user }}
 {{ end }}
+{{ end }}
+
 {{/* generate a Component per Workload */}}
 {{ range $name, $spec := .Workloads }}
 - op: set
