@@ -71,13 +71,20 @@
       - 'component:{{ $componentAndResourcePrefix }}{{ $rname }}'
       {{ else }}
       {{ if ne $rspec.type "route" }}
+      {{ if ne ($rspec.id | default "") "" }}
+      - 'resource:shared-{{ $rname }}'
+      {{ else }}
       - 'resource:{{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}'
       {{ end }}
       {{ end }}
       {{ end }}
-{{/* generate a Resource per Workload's resource */}}
+      {{ end }}
+{{ end }}
+
+{{/* generate a Resource per Workload's resource (non shared resources) and skip route that we don't want in Backstage Catalog */}}
+{{ range $name, $spec := .Workloads }}
 {{ range $rname, $rspec := $spec.resources }}
-{{ if ne $rspec.type "route" }}
+{{ if and (and (ne $rspec.type "route") (ne $rspec.type "service")) (eq ($rspec.id | default "") "") }}
 - op: set
   path: -1
   value:
@@ -86,7 +93,32 @@
     metadata:
       name: {{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}
       title: {{ $rname }}
-      description: '{{ $rname }} (type: {{ $rspec.type }}) of {{ $name }}'
+      description: {{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}
+    spec:
+      type: {{ $rspec.type }}
+      owner: user:{{ $user }}
+      {{ if ne $namespace "" }}
+      system: {{ $namespace }}
+      {{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* generate shared Resources across the project/environment */}}
+{{ $sharedResources := "" }}
+{{ range $name, $spec := .Workloads }}
+{{ range $rname, $rspec := $spec.resources }}
+{{ if and (ne ($rspec.id | default "") "") (not (contains $rname $sharedResources)) }}
+{{ $sharedResources = cat $sharedResources $rname }}
+- op: set
+  path: -1
+  value:
+    apiVersion: backstage.io/v1alpha1
+    kind: Resource
+    metadata:
+      name: {{ print "shared-" $rname }}
+      title: {{ $rname }}
+      description: {{ print "shared-" $rname }}
     spec:
       type: {{ $rspec.type }}
       owner: user:{{ $user }}
