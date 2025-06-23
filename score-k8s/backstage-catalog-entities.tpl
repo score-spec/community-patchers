@@ -65,6 +65,7 @@
       {{ if ne $namespace "" }}
       system: {{ $namespace }}
       {{ end }}
+      {{ if $spec.resources }}
       dependsOn:
       {{ range $rname, $rspec := $spec.resources }}
       {{ if eq $rspec.type "service" }}
@@ -75,6 +76,7 @@
       - 'resource:shared-{{ $rname }}'
       {{ else }}
       - 'resource:{{ $componentAndResourcePrefix }}{{ $name }}-{{ $rname }}'
+      {{ end }}
       {{ end }}
       {{ end }}
       {{ end }}
