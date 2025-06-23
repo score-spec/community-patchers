@@ -3,3 +3,4 @@
 **/score.yaml
 .score-k8s/
 .score-compose/
+**/catalog-info.yaml
