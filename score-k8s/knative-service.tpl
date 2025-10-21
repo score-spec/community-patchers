@@ -9,6 +9,7 @@
 {{ end }}
 {{ end }}
 
+{{ $namespace := .Namespace }}
 {{/* generate one Knative Service per Workload */}}
 {{ range $name, $spec := .Workloads }}
 - op: set
@@ -18,6 +19,9 @@
     kind: Service
     metadata:
       name: {{ $name }}
+      {{ if ne $namespace "" }}
+      namespace: {{ $namespace }}
+      {{ end }}
     spec:
       template:
         spec:
@@ -48,13 +52,21 @@
               resources:
                 {{- if $container.resources.limits }}
                 limits:
+                  {{- if $container.resources.limits.memory }}
                   memory: {{ $container.resources.limits.memory }}
+                  {{ end }}
+                  {{- if $container.resources.limits.cpu }}
                   cpu: {{ $container.resources.limits.cpu }}
+                  {{ end }}
                 {{ end }}
                 {{- if $container.resources.requests }}
                 requests:
+                  {{- if $container.resources.requests.memory }}
                   memory: {{ $container.resources.requests.memory }}
+                  {{ end }}
+                  {{- if $container.resources.requests.cpu }}
                   cpu: {{ $container.resources.requests.cpu }}
+                  {{ end }}
                 {{ end }}
               {{ end }}
               {{- if $container.livenessProbe }}
